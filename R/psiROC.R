@@ -693,7 +693,7 @@ psiROC <- function(rocfile, rRNAfile, rRNAfile2, filtfile,output_dir,output_name
 
   #known_data miss/hit hg38_human_chr21_rRNA_known_pseudoU_SingleSites.bed
   ROC_data$rRNA_uniq_id<-paste(ROC_data$chrom,ROC_data$chromStart,ROC_data$chromEnd,ROC_data$strand,sep="_")
-  ROC_data_evidence<-ROC_data %>% left_join(evidence,by=c("rRNA_uniq_id"="rRNA_uniq_id")) %>% filter(!is.na(rRNA_anno))
+  ROC_data_evidence<-ROC_data %>% left_join(evidence,by=c("rRNA_uniq_id"="rRNA_uniq_id")) %>% as_tibble() %>% filter(!is.na(rRNA_anno))
   write.csv(ROC_data_evidence,paste(outfile_prefix,"_hg38_human_chr21_rRNA_known_pseudoU_SingleSites_psiFinder_hit.csv",sep=""))
   ROC_data_no_evidence<-evidence %>% left_join(ROC_data,by=c("rRNA_uniq_id"="rRNA_uniq_id")) %>% filter(is.na(class))
   write.csv(ROC_data_no_evidence,paste(outfile_prefix,"_hg38_human_chr21_rRNA_known_pseudoU_SingleSites_psiFinder_miss.csv",sep=""))
@@ -702,7 +702,7 @@ psiROC <- function(rocfile, rRNAfile, rRNAfile2, filtfile,output_dir,output_name
 
   #known_data miss/hit hg38.psiU.SingleSites.bed
   ROC_data$rRNA_uniq_id<-paste(ROC_data$chrom,ROC_data$chromStart,ROC_data$chromEnd,ROC_data$strand,sep="_")
-  ROC_data_evidence2<-ROC_data %>% left_join(evidence2,by=c("rRNA_uniq_id"="rRNA_uniq_id")) %>% filter(!is.na(rRNA_anno))
+  ROC_data_evidence2<-ROC_data %>% left_join(evidence2,by=c("rRNA_uniq_id"="rRNA_uniq_id")) %>% as_tibble() %>% filter(!is.na(rRNA_anno))
   write.csv(ROC_data_evidence2,paste(outfile_prefix,"_hg38.psiU.SingleSites.bed_psiFinder_hit.csv",sep=""))
   ROC_data_no_evidence2<-evidence2 %>% left_join(ROC_data,by=c("rRNA_uniq_id"="rRNA_uniq_id")) %>% filter(is.na(class))
   write.csv(ROC_data_no_evidence2,paste(outfile_prefix,"_hg38.psiU.SingleSites.bed_psiFinder_miss.csv",sep=""))
@@ -711,7 +711,7 @@ psiROC <- function(rocfile, rRNAfile, rRNAfile2, filtfile,output_dir,output_name
 
   #final_pred miss/hit
   final_pred$rRNA_uniq_id<-paste(final_pred$chrom,final_pred$chromStart,final_pred$chromEnd,final_pred$strand,sep="_")
-  final_pred_evidence<-final_pred %>% left_join(evidence,by=c("rRNA_uniq_id"="rRNA_uniq_id")) %>% filter(!is.na(rRNA_anno))
+  final_pred_evidence<-final_pred %>% left_join(evidence,by=c("rRNA_uniq_id"="rRNA_uniq_id")) %>% as_tibble() %>% filter(!is.na(rRNA_anno))
   write.csv(final_pred_evidence,paste(outfile_prefix,"_hg38_human_chr21_rRNA_known_pseudoU_SingleSites_psiFinder_roc_stopRatioFC_thres_hit.csv",sep=""))
   final_pred_no_evidence<-evidence %>% left_join(final_pred,by=c("rRNA_uniq_id"="rRNA_uniq_id")) %>% filter(is.na(base))
   write.csv(final_pred_no_evidence,paste(outfile_prefix,"_hg38_human_chr21_rRNA_known_pseudoU_SingleSites_psiFinder_roc_stopRatioFC_thres_miss.csv",sep=""))
