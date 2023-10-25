@@ -31,7 +31,7 @@ install.packages("pacman")
 library(pacman)
 
 #load and install required R packages 
-p_load('remotes','dplyr','data.table','pROC','ggplot2','cowplot','gridExtra','reshape2','stringr','RColorBrewer','e1071','openxlsx','caTools','ggpol','neuralnet','NeuralNetTools','tidyr')
+p_load('remotes','dplyr','data.table','pROC','ggplot2','cowplot','gridExtra','reshape2','stringr','RColorBrewer','scales','e1071','openxlsx','caTools','ggpol','neuralnet','NeuralNetTools','tidyr')
 
 #install from github
 library("remotes")#or run library("devtools")
