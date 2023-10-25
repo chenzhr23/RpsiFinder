@@ -31,15 +31,16 @@ ground_truth <- function(RpsiFinder_res_file,
 
   bedtools_path <- system.file("program", "bedtools", package = "RpsiFinder")
 
-  # if (bedtools_path!="") {
-  #   print("bedtools exist!")
-  # }else{
-  #   print("bedtools.static not exist! Downloading...")
-  #   url<-"https://github.com/arq5x/bedtools2/releases/download/v2.31.0/bedtools.static"
-  #   download.file(url, destfile = paste(system.file("program", package = "RpsiFinder"),"bedtools",sep="/"))
-  #   bedtools_path <- system.file("program", "bedtools", package = "RpsiFinder")
-  #   system(paste("chmod 777", bedtools_path, sep=" "))
-  # }
+  if (bedtools_path!="") {
+    print("bedtools exist!")
+    system(paste("chmod 777", bedtools_path, sep=" "))
+  }else{
+    print("bedtools.static not exist! Downloading...")
+    url<-"https://github.com/arq5x/bedtools2/releases/download/v2.31.0/bedtools.static"
+    download.file(url, destfile = paste(system.file("program", package = "RpsiFinder"),"bedtools",sep="/"))
+    bedtools_path <- system.file("program", "bedtools", package = "RpsiFinder")
+    system(paste("chmod 777", bedtools_path, sep=" "))
+  }
 
   output_dir_output_name<-paste(output_dir,"/",output_name,sep="")
   knowpse_bed<-paste(output_dir_output_name,"_knowpse.bed",sep="")
