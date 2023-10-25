@@ -32,7 +32,7 @@ udfilt <- function(RpsiFinder_res_file,
                                                                afterRpmFoldRatio>afterRpmFoldRatio_thres &
                                                                stopRatioFC>stopRatioFC_thres, 1, 0))
   output_dir_output_name<-paste(output_dir,"/",output_name,sep="")
-  fwrite(x=prefilt_res,file=paste(output_dir_output_name,".txt",sep=""),sep="\t")
-  write.table(prefilt_res,paste(output_dir_output_name,".bed",sep=""),row.names=F,col.names=F,quote=F,sep="\t")
+  fwrite(x=udfilt_res,file=paste(output_dir_output_name,".txt",sep=""),sep="\t")
+  write.table(udfilt_res,paste(output_dir_output_name,".bed",sep=""),row.names=F,col.names=F,quote=F,sep="\t")
   return(udfilt_res)
 }
