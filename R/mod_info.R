@@ -34,6 +34,7 @@ mod_info <- function(RpsiFinder_res_file,
 
   if (bedtools_path!="") {
     print("bedtools exist!")
+    system(paste("chmod 777", bedtools_path, sep=" "))
   }else{
     print("bedtools.static not exist! Downloading...")
     url<-"https://github.com/arq5x/bedtools2/releases/download/v2.31.0/bedtools.static"
