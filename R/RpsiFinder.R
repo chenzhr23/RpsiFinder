@@ -21,6 +21,7 @@ RpsiFinder <- function(genome_fa,
                        options = "-p 1.5 -t 5 -r 0.05 -M 1 -f 1 -m 0 -s -n -w 20")
   {
   psiFinder_path <- system.file("program", "psiFinder", package = "RpsiFinder")
+  system(paste("chmod 777", psiFinder_path, sep=" "))
   if (!dir.exists(output_dir)) {
     dir.create(output_dir)
   }
