@@ -1,4 +1,4 @@
-# RpsiFinder
+# RpsiFinder (ePSI-seq)
 
 ## Solution to Ψ-site identification, annotation, and target prediction
 
