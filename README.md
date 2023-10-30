@@ -1,4 +1,4 @@
-# RpsiFinder
+# RpsiFinder (based on reverse transcription stop)
 
 ## Solution to Ψ-site identification, annotation, and target prediction
 
