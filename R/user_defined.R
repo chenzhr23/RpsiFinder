@@ -23,7 +23,7 @@ user_defined <- function(rocfile, rRNAfile, filtfile, output_dir, output_name)
   outfile_prefix<-paste(output_dir,"/",output_name,sep="")
 
   # roc_plot.txt
-  ROC_data<<-as.data.frame(fread(rocfile))
+  ROC_data<-fread(rocfile)
   colnames(ROC_data)<-c("chrom",#1
                         "chromStart",#2
                         "chromEnd",#3
@@ -259,7 +259,7 @@ user_defined <- function(rocfile, rRNAfile, filtfile, output_dir, output_name)
   invisible(dev.off()) # Close the file
 
   #filt by best F1 score threshold
-  to_filt<<-as.data.frame(fread(filtfile,skip=1))
+  to_filt<-fread(filtfile)
   colnames(to_filt)<-c(
     "chrom",#1
     "chromStart",#2
@@ -301,6 +301,7 @@ user_defined <- function(rocfile, rRNAfile, filtfile, output_dir, output_name)
     "treatStopMeanFoldRatio",#38
     "extendSeq",#39
     "pred_class")#40
+  to_filt$base<-str_replace_all(to_filt$base, "TRUE", "T")
   to_filt$pred_class<-str_replace(as.character(to_filt$pred_class),"0","non-psi")
   to_filt$pred_class<-str_replace(as.character(to_filt$pred_class),"1","psi")
 
