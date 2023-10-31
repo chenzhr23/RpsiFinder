@@ -25,13 +25,13 @@ prefilt_out <- prefilt(RpsiFinder_res=RpsiFinder_example,
                         target_chrom="^chr[0-9|a-z|A-Z]*$",
                         target_base="T",
                         treatStopNum_thres=10,
-                        output_dir="/home/chenzhr23/test_out/RpsiFinder_out",
+                        output_dir="../test_out/RpsiFinder_out",
                         output_name="test_prefilt")
 
-ground_truth(RpsiFinder_res_file="/home/chenzhr23/test_out/RpsiFinder_out/test_prefilt.txt",
+ground_truth(RpsiFinder_res_file="../test_out/RpsiFinder_out/test_prefilt.txt",
               known_rRNA_bed="../test_data/ground_truth/hg38_human_chr21_rRNA_known_pseudoU_SingleSites.bed",
               rrna_chr21_bed="../test_data/ground_truth/rrna_chr21.bed",
-              output_dir="/home/chenzhr23/test_out/ground_truth",
+              output_dir="../test_out/ground_truth",
               output_name="ground_truth")
 }
 \value{

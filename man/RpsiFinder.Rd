@@ -49,7 +49,7 @@ RpsiFinder(genome_fa="../test_data/genome/hg38.fa",
             treat_bam="../test_data/A2.cutadapt.extendedFrags.collapse.cutBarcodes.fa.gzAligned.sortedByCoord.out.bam",
             input_bam = "../test_data/A1.cutadapt.extendedFrags.collapse.cutBarcodes.fa.gzAligned.sortedByCoord.out.bam",
             gene_bed12 = "../test_data/annotation/hg38.gencode.v30.tRNA.refseqNcRNA.geneAnno.bed12",
-            output_dir="/home/chenzhr23/test_out/RpsiFinder_out",
+            output_dir="../test_out/RpsiFinder_out",
             output_name = "RpsiFinder_out")
 }
 \value{tab-delimited text files include stop read information for each CMC-treatment and CMC-control group, e.g. treatStopRatio, ctrlStopRatio}

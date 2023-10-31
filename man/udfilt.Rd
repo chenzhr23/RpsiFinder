@@ -31,17 +31,17 @@ prefilt_out <- prefilt(RpsiFinder_res=RpsiFinder_example,
                         target_chrom="^chr[0-9|a-z|A-Z]*$",
                         target_base="T",
                         treatStopNum_thres=10,
-                        output_dir="/home/chenzhr23/test_out/RpsiFinder_out",
+                        output_dir="../test_out/RpsiFinder_out",
                         output_name="test_prefilt")
 
-udfilt_out <- udfilt(RpsiFinder_res_file="/home/chenzhr23/test_out/RpsiFinder_out/test_prefilt.txt",
+udfilt_out <- udfilt(RpsiFinder_res_file="../test_out/RpsiFinder_out/test_prefilt.txt",
                    treatPreRpmFold_thres=1.5,
                    treatAfterRpmFold_thres=1.5,
                    treatStopRatio_thres=0.04,
                    preRpmFoldRatio_thres=1.5,
                    afterRpmFoldRatio_thres=1.5,
                    stopRatioFC_thres=1.5,
-                   output_dir="/home/chenzhr23/test_out/RpsiFinder_out",
+                   output_dir="../test_out/RpsiFinder_out",
                    output_name="test_udfilt")
 
 }

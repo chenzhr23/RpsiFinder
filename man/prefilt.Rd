@@ -25,7 +25,7 @@ prefilt_out <- prefilt(RpsiFinder_res=RpsiFinder_example,
                         target_chrom="^chr[0-9|a-z|A-Z]*$",
                         target_base="T",
                         treatStopNum_thres=10,
-                        output_dir="/home/chenzhr23/test_out/RpsiFinder_out",
+                        output_dir="../test_out/RpsiFinder_out",
                         output_name="test_prefilt")
 
 }
