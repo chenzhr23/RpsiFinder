@@ -223,14 +223,24 @@ tidy_psiACAscan <- function(infile,
   target$uniq_id<-paste(target$V1,target$V2,target$V3,target$V6,sep="_")
   pseudoU<-pseudoU %>% left_join(target,by=c("chro_id"="uniq_id"))
   pseudoU<-subset(pseudoU, select=-c(V1,V2,V3,V5,V6))
-  pseudoU[is.na(pseudoU$V4),]$V4<-"unknown"
+
+  if(is.character(pseudoU[is.na(pseudoU$V4),]$V4)){
+    print("all of the snoRNAs are with known snoRNA targets!")
+  }else{
+    pseudoU[is.na(pseudoU$V4),]$V4<-"unknown"
+  }
+
   pseudoU<-pseudoU%>%rename(annotated_snoTar=V4)
   pseudoU$pair_id<-paste(pseudoU$ACA_id,pseudoU$chro_id,sep="_")
   orphan_na_index<-which(is.na(pseudoU$Orphan))
   pseudoU[orphan_na_index,]$Orphan<-"TRUE"
 
   orphan_FALSE_index<-which(pseudoU$annotated_snoTar!="unknown")
-  pseudoU[orphan_FALSE_index,]$Orphan<-"FALSE"
+  if(is.integer(orphan_FALSE_index)){
+    print("none of the snoRNAs are candidate orphan snoRNA!")
+  }else{
+    pseudoU[orphan_FALSE_index,]$Orphan<-"FALSE"
+  }
 
   write.csv(pseudoU,paste(output_dir_output_name,"_pseudoU.csv",sep=""),row.names = F,quote = F)
   write.xlsx(pseudoU,paste(output_dir_output_name,"_pseudoU.xlsx",sep=""),overwrite=T)
