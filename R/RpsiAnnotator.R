@@ -28,16 +28,17 @@ add_biotype<-function(anno_bed_file,output_name){
 
   search_df<-do.call(rbind,search_list)
 
-  anno_bed_file_input<-as.data.frame(fread(anno_bed_file))
+  anno_bed_file_input<-as.data.frame(fread(anno_bed_file,fill=TRUE))
   anno_bed_file_input_separate<-anno_bed_file_input %>%
     separate_wider_delim(V7, "|", names = c("Transcript_ID",
                                             "Transcript_NAME",
                                             "Gene_ID",
                                             "Gene_NAME",
                                             "Gene_Type",
-                                            "Region"))
+                                            "Region"),too_few = "align_start")
 
   anno.biotype.bed<-anno_bed_file_input_separate %>% left_join(search_df,by=c("Gene_Type"="Gene_biotype_detail"))
+  anno.biotype.bed$V8<-str_replace_all(anno.biotype.bed$V8,"0","intergenic")
   anno_bed_file_Gene_biotype<-sub("_anno.bed","_anno.biotype.bed",anno_bed_file)
   fwrite(x=anno.biotype.bed,file = anno_bed_file_Gene_biotype,sep="\t",col.names = FALSE)
   assign(paste(output_name,"_anno_biotype_bed_R",sep=""),fread(anno_bed_file_Gene_biotype),envir = .GlobalEnv)
@@ -520,7 +521,7 @@ RpsiAnnotator <- function(input_bedfile,
                 sep=" ")
   print(cmd1)
   system(cmd1)
-  assign(paste(output_name,"_anno_bed_R",sep=""),fread(anno_bed),envir = .GlobalEnv)
+  assign(paste(output_name,"_anno_bed_R",sep=""),fread(anno_bed,fill=TRUE),envir = .GlobalEnv)
 
   #bedAnnotator_cmd2="./script/bedAnnotator -s 1 --anno $bed6file --bed $bedfile -o ${bedfile%.bed}_anno_append.bed"
   #eval $bedAnnotator_cmd2 &
@@ -532,7 +533,7 @@ RpsiAnnotator <- function(input_bedfile,
                 sep=" ")
   print(cmd2)
   system(cmd2)
-  assign(paste(output_name,"_anno_append_bed_R",sep=""),fread(anno_append_bed),envir = .GlobalEnv)
+  assign(paste(output_name,"_anno_append_bed_R",sep=""),fread(anno_append_bed,fill=TRUE),envir = .GlobalEnv)
 
   anno.biotype.bed.file<-add_biotype(anno_bed_file = anno_bed,output_name)
 
