@@ -108,5 +108,5 @@ psiANNpred <- function(filtfile, annmodelfile, rRNAfile, output_dir,output_name)
   recovery <- paste(round(length(unique(final_pred_evidence$rRNA_uniq_id)) / length(unique(evidence$rRNA_uniq_id)) * 100, 2), "%", sep = "")
   cat("psiFinder+ANN recover (hg38_human_chr21_rRNA_known_pseudoU_SingleSites.bed)", recovery, "rRNA psi sites in all known chrom21\n")
 
-  print(paste("SVM prediction in",output_dir,sep=" "))
+  print(paste("ANN prediction in",output_dir,sep=" "))
 }
